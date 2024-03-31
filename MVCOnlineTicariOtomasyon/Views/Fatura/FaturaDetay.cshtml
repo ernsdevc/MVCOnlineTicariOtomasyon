@@ -1,0 +1,32 @@
+﻿@using MVCOnlineTicariOtomasyon.Models.Siniflar
+@model List<FaturaKalem>
+@{
+    ViewBag.Title = "FaturaDetay";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h2>Fatura Detay</h2>
+<br />
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">@ViewBag.v Numaralı Faturaya Ait Detaylar</li>
+</ol>
+<table class="table table-hover">
+    <tr>
+        <th>#</th>
+        <th>Açıklama</th>
+        <th>Miktar</th>
+        <th>Birim Fiyat</th>
+        <th>Tutar</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.KalemID</td>
+            <td>@item.Aciklama</td>
+            <td>@item.Miktar</td>
+            <td>@item.BirimFiyat</td>
+            <td>@item.Tutar</td>
+        </tr>
+    }
+</table>
+<a href="/Fatura/YeniKalem/@Model.FirstOrDefault().FaturaID" class="btn btn-default" style="background-color:burlywood;color:white;">Yeni Kalem Girişi</a>

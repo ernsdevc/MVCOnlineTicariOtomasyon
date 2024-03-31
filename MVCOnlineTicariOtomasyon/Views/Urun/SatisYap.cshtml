@@ -1,0 +1,39 @@
+﻿@model MVCOnlineTicariOtomasyon.Models.Siniflar.SatisHareket
+@{
+    ViewBag.Title = "SatisYap";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h2>Satış Yap</h2>
+<form class="form-group" method="post">
+    @Html.HiddenFor(x => x.UrunID, new { Value = ViewBag.v1 })
+    @Html.LabelFor(x => x.Urun.UrunAd)
+    <input type="text" value="@ViewBag.v2" readonly class="form-control">
+    <br />
+    @Html.Label("Cari")
+    @Html.DropDownListFor(x => x.CariID, (List<SelectListItem>)ViewBag.v3, new { @class = "form-control" })
+    <br />
+    @Html.Label("Personel")
+    @Html.DropDownListFor(x => x.PersonelID, (List<SelectListItem>)ViewBag.v4, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Adet)
+    @Html.TextBoxFor(x => x.Adet, new { @class = "form-control", @type = "number", @id = "txt1", @onkeyup = "sum()", Value = "0" })
+    <br />
+    @Html.LabelFor(x => x.Fiyat)
+    @Html.TextBoxFor(x => x.Fiyat, new { Value = ViewBag.v5, @class = "form-control", @id = "txt2"})
+    <br />
+    @Html.LabelFor(x => x.ToplamTutar)
+    @Html.TextBoxFor(x => x.ToplamTutar, new { @class = "form-control", @id = "txt3", @readonly = "true", Value = "0" })
+    <br />
+    <button class="btn btn-info">Kaydet</button>
+</form>
+<script>
+    function sum() {
+        var sayi1 = document.getElementById('txt1').value;
+        var sayi2 = document.getElementById('txt2').value;
+        var sonuc = parseInt(sayi1) * parseInt(sayi2);
+        if (!isNaN(sonuc)) {
+            document.getElementById('txt3').value = sonuc;
+        }
+    }
+</script>

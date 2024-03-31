@@ -1,0 +1,24 @@
+﻿@using MVCOnlineTicariOtomasyon.Models.Siniflar
+@model  List<KargoTakip>
+@if (Model.Count() != 0)
+{
+    <p>&nbsp; <b>Takip Kodu:</b> @Model.FirstOrDefault().TakipKodu</p>
+}
+else
+{
+    <p>&nbsp; <b>Takip Kodu:</b> </p>
+}
+<table class="table table-bordered">
+    <tr>
+        <th>Açıklama</th>
+        <th>Tarih</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Aciklama</td>
+            <td>@item.TarihSaat.ToShortDateString()</td>
+        </tr>
+    }
+</table>
+<button class="btn btn-danger" data-dismiss="modal">Tamam</button>

@@ -1,0 +1,58 @@
+﻿@model MVCOnlineTicariOtomasyon.Models.Siniflar.CascadeUrunKategori
+@{
+    ViewBag.Title = "KategoriUrun";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<div>
+    <h2>Kategori - Ürün</h2>
+</div>
+<br />
+<div>
+    @Html.Label("Kategori")
+    @Html.DropDownList("drpKategori", Model.Kategori, "---Kategori Seçiniz---", new { @class = "form-control" })
+    <br />
+    @Html.Label("Ürün")
+    @Html.DropDownList("drpUrun", Model.Urunler, "---Ürün Seçiniz---", new { @class = "form-control" })
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+    $(function () {
+
+        $('#drpKategori').change(function () {
+
+            var id = $('#drpKategori').val();
+
+            $.ajax({
+
+                url: '/Kategori/KategoriyeGoreUrunGetir',
+
+                data: { id: id },
+
+                type: "POST",
+
+                dataType: "Json",
+
+                success: function (data) {
+
+                    console.log(data);
+
+                    $('#drpUrun').empty();
+
+                    for (var i = 0; i < data.length; i++) {
+
+                        $('#drpUrun').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+
+                    }
+
+                }
+
+            });
+
+        });
+
+    });
+
+</script>

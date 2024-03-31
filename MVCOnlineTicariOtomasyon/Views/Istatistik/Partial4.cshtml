@@ -1,0 +1,64 @@
+﻿@model IEnumerable<MVCOnlineTicariOtomasyon.Models.Siniflar.Grup3>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Marka-Ürün Tablosu</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body p-0">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Marka</th>
+                    <th>Progress Bar</th>
+                    <th style="width: 40px">Adet</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int sirano = 0;}
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@{sirano++;} @sirano.</td>
+                        <td>@item.Marka</td>
+                        <td>
+                            @if (item.Adet == 1)
+                            {
+                                <div class="progress progress-xs">
+                                    <div class="progress-bar progress-bar-danger" style="width: @(item.Adet*25)%"></div>
+                                </div>
+                            }
+                            @if (item.Adet == 2)
+                            {
+                                <div class="progress progress-xs">
+                                    <div class="progress-bar bg-warning" style="width: @(item.Adet*25)%"></div>
+                                </div>
+                            }
+                            @if (item.Adet == 3)
+                            {
+                                <div class="progress progress-xs">
+                                    <div class="progress-bar bg-success" style="width: @(item.Adet*25)%"></div>
+                                </div>
+                            }
+                        </td>
+                        <td>
+                            @if (item.Adet == 1)
+                            {
+                                <span class="badge bg-danger">@item.Adet%</span>
+                            }
+                            @if (item.Adet == 2)
+                            {
+                                <span class="badge bg-success">@item.Adet%</span>
+                            }
+                            @if (item.Adet == 3)
+                            {
+                                <span class="badge bg-warning">@item.Adet%</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
